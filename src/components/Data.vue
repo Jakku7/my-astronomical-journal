@@ -69,6 +69,7 @@ export default {
   padding: 24px;
   bottom: 0;
   left: 0;
+  right: 0;
   display: flex;
   flex-direction: row;
   box-sizing: border-box;

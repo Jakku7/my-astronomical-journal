@@ -90,5 +90,7 @@ body {
   position: relative;
   margin: 12px auto;
   min-width: 600px;
+  display: flex;
+  justify-content: center;
 }
 </style>
