@@ -1,5 +1,7 @@
 <template>
-  <div class="logotype">My Astronomical <br />Journal</div>
+  <div class="logotype">
+    My Astronomical <span class="second-line">Journal</span>
+  </div>
 </template>
 
 <script>
@@ -15,5 +17,9 @@ export default {
   color: #fff;
   padding: 24px;
   text-align: left;
+}
+.second-line {
+  display: block;
+  margin-top: 12px;
 }
 </style>

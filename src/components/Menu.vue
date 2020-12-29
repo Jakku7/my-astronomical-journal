@@ -36,7 +36,8 @@ export default {
   font-family: "Astrolab";
   color: #fff;
   text-align: right;
-  font-size: 12px;
+  font-size: 16px;
+  margin-top: 12px;
 }
 
 .select {

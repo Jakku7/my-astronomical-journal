@@ -36,7 +36,7 @@ export default {
   position: relative;
 }
 .orbit {
-  border: 0.25rem solid rgba(190, 190, 190, 0.05);
+  border: 0.25rem solid rgba(190, 190, 190, 0.075);
   display: block;
   left: 50%;
   position: absolute;

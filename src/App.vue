@@ -74,19 +74,21 @@ export default {
 body {
   padding: 0;
   margin: 0;
-  background: #0b1728ff;
+  background: #0c1828;
   min-height: 100vh;
   display: flex;
   margin: 0 12px;
   background-image: url("./assets/planets/space-texture.png");
+  background-size: 25% 25%;
 }
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #0c1828;
   width: 100%;
   position: relative;
   margin: 12px auto;
+  min-width: 600px;
 }
 </style>
