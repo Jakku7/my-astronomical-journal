@@ -86,9 +86,7 @@ body {
   text-align: center;
   color: #2c3e50;
   width: 100%;
-  max-width: 1024px;
   position: relative;
   margin: 12px auto;
-  border: 6px dashed #10233c;
 }
 </style>
