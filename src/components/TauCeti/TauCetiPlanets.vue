@@ -1,7 +1,11 @@
 <template>
+  <h6 v-if="single" class="planet-title">{{ planet }}</h6>
   <div class="solar-system">
     <img src="../../assets/planets/sun.svg" alt="Sun" title="sun" class="sun" />
-    <div class="orbit tau-ceti-e-orbit">
+    <div
+      v-if="!single || (single && planet === 'Tau Ceti e')"
+      class="orbit tau-ceti-e-orbit"
+    >
       <div class="planet-hover tau-ceti-e planet">
         <img
           src="../../assets/planets/mercury.svg"
@@ -11,7 +15,10 @@
         />
       </div>
     </div>
-    <div class="orbit tau-ceti-f-orbit">
+    <div
+      v-if="!single || (single && planet === 'Tau Ceti f')"
+      class="orbit tau-ceti-f-orbit"
+    >
       <div class="planet-hover tau-ceti-f planet">
         <img
           src="../../assets/planets/pluto.svg"
@@ -21,7 +28,10 @@
         />
       </div>
     </div>
-    <div class="orbit tau-ceti-g-orbit">
+    <div
+      v-if="!single || (single && planet === 'Tau Ceti g')"
+      class="orbit tau-ceti-g-orbit"
+    >
       <div class="planet-hover tau-ceti-g planet">
         <img
           src="../../assets/planets/mars.svg"
@@ -31,7 +41,10 @@
         />
       </div>
     </div>
-    <div class="orbit tau-ceti-h-orbit">
+    <div
+      v-if="!single || (single && planet === 'Tau Ceti h')"
+      class="orbit tau-ceti-h-orbit"
+    >
       <div class="planet-hover tau-ceti-h planet">
         <img
           src="../../assets/planets/mars.svg"
@@ -47,6 +60,10 @@
 <script>
 export default {
   name: "TauCetiPlanets",
+  props: {
+    single: Boolean,
+    planet: String,
+  },
 };
 </script>
 
@@ -68,6 +85,14 @@ export default {
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
   transition: border 0.2s ease-in-out;
+}
+.planet-title {
+  top: 100px;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: "Astrolab";
 }
 .tau-ceti-e-orbit {
   border-radius: 50%;

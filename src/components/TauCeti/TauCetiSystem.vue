@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <TauCetiPlanets />
+    <TauCetiPlanets :single="single" :planet="planet" />
   </div>
 </template>
 
@@ -10,6 +10,10 @@ export default {
   name: "Tau Ceti System",
   components: {
     TauCetiPlanets,
+  },
+  props: {
+    single: Boolean,
+    planet: String,
   },
 };
 </script>

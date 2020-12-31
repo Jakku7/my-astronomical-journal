@@ -1,4 +1,5 @@
 <template>
+  <h6 v-if="single" class="planet-title">{{ planet }}</h6>
   <div class="solar-system">
     <img
       src="../../assets/planets/proxima-centauri.svg"
@@ -6,7 +7,10 @@
       title="Proxima Centauri"
       class="sun"
     />
-    <div class="orbit mercury-orbit">
+    <div
+      v-if="!single || (single && planet === 'Proxima Centauri b')"
+      class="orbit mercury-orbit"
+    >
       <div class="planet-hover mercury planet">
         <img
           src="../../assets/planets/mercury.svg"
@@ -22,6 +26,10 @@
 <script>
 export default {
   name: "ProximaPlanets",
+  props: {
+    single: Boolean,
+    planet: String,
+  },
 };
 </script>
 
@@ -43,6 +51,14 @@ export default {
   top: 50%;
   transform: translate3d(-50%, -50%, 0);
   transition: border 0.2s ease-in-out;
+}
+.planet-title {
+  top: 100px;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: "Astrolab";
 }
 .mercury-orbit {
   border-radius: 50%;

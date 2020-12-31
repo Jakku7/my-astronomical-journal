@@ -1,13 +1,26 @@
 <template>
   <Navbar :system="system" :onChangeSystem="onChangeSystem" />
-  <SolarSystem v-if="this.system === 'Solar System'" />
-  <ProximaCentauri v-if="this.system === 'Proxima Centauri'" />
-  <TauCeti v-if="this.system === 'Tau Ceti'" />
+  <SolarSystem
+    :planet="planet"
+    :single="single"
+    v-if="this.system === 'Solar System'"
+  />
+  <ProximaCentauri
+    :planet="planet"
+    :single="single"
+    v-if="this.system === 'Proxima Centauri'"
+  />
+  <TauCeti
+    :planet="planet"
+    :single="single"
+    v-if="this.system === 'Tau Ceti'"
+  />
   <Data
     :single="single"
     :system="system"
     :planet="planet"
     :onChangePlanet="onChangePlanet"
+    :onChangeSingle="onChangeSingle"
   />
 </template>
 
@@ -28,7 +41,7 @@ export default {
   },
   data() {
     return {
-      // single: false,
+      single: false,
       system: "Solar System",
       planet: "Mercury",
     };
@@ -42,6 +55,9 @@ export default {
     },
     setPlanet(newPlanet) {
       this.planet = newPlanet;
+    },
+    onChangeSingle() {
+      this.single = !this.single;
     },
     setSystem(newSystem) {
       switch (newSystem) {

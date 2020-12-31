@@ -1,7 +1,11 @@
 <template>
+  <h6 v-if="single" class="planet-title">{{ planet }}</h6>
   <div class="solar-system">
     <img src="../../assets/planets/sun.svg" alt="Sun" title="sun" class="sun" />
-    <div class="orbit mercury-orbit">
+    <div
+      v-if="!single || (single && planet === 'Mercury')"
+      class="orbit mercury-orbit"
+    >
       <div class="planet-hover mercury planet">
         <img
           src="../../assets/planets/mercury.svg"
@@ -11,7 +15,10 @@
         />
       </div>
     </div>
-    <div class="orbit venus-orbit">
+    <div
+      v-if="!single || (single && planet === 'Venus')"
+      class="orbit venus-orbit"
+    >
       <div class="planet-hover venus planet">
         <img
           src="../../assets/planets/venus.svg"
@@ -21,7 +28,10 @@
         />
       </div>
     </div>
-    <div class="orbit earth-orbit">
+    <div
+      v-if="!single || (single && planet === 'Earth')"
+      class="orbit earth-orbit"
+    >
       <div class="planet-hover earth planet">
         <img
           src="../../assets/planets/earth.svg"
@@ -31,7 +41,10 @@
         />
       </div>
     </div>
-    <div class="orbit mars-orbit">
+    <div
+      v-if="!single || (single && planet === 'Mars')"
+      class="orbit mars-orbit"
+    >
       <div class="planet-hover mars planet">
         <img
           src="../../assets/planets/mars.svg"
@@ -41,7 +54,10 @@
         />
       </div>
     </div>
-    <div class="orbit jupiter-orbit">
+    <div
+      v-if="!single || (single && planet === 'Jupiter')"
+      class="orbit jupiter-orbit"
+    >
       <div class="planet-hover jupiter planet">
         <img
           src="../../assets/planets/jupiter.svg"
@@ -51,7 +67,10 @@
         />
       </div>
     </div>
-    <div class="orbit saturn-orbit">
+    <div
+      v-if="!single || (single && planet === 'Saturn')"
+      class="orbit saturn-orbit"
+    >
       <div class="planet-hover saturn planet">
         <img
           src="../../assets/planets/saturn.svg"
@@ -61,7 +80,10 @@
         />
       </div>
     </div>
-    <div class="orbit uranus-orbit">
+    <div
+      v-if="!single || (single && planet === 'Uranus')"
+      class="orbit uranus-orbit"
+    >
       <div class="planet-hover uranus planet">
         <img
           src="../../assets/planets/uranus.svg"
@@ -71,7 +93,10 @@
         />
       </div>
     </div>
-    <div class="orbit neptune-orbit">
+    <div
+      v-if="!single || (single && planet === 'Neptune')"
+      class="orbit neptune-orbit"
+    >
       <div class="planet-hover neptune planet">
         <img
           src="../../assets/planets/neptune.svg"
@@ -87,6 +112,10 @@
 <script>
 export default {
   name: "Planets",
+  props: {
+    single: Boolean,
+    planet: String,
+  },
 };
 </script>
 
@@ -99,6 +128,14 @@ export default {
   display: block;
   width: 100%;
   position: relative;
+}
+.planet-title {
+  top: 100px;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: "Astrolab";
 }
 .orbit {
   border: 0.25rem solid rgba(190, 190, 190, 0.075);

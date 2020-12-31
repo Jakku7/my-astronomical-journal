@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <SolarPlanets />
+    <SolarPlanets :single="single" :planet="planet" />
   </div>
 </template>
 
@@ -10,6 +10,10 @@ export default {
   name: "Solar System",
   components: {
     SolarPlanets,
+  },
+  props: {
+    single: Boolean,
+    planet: String,
   },
 };
 </script>

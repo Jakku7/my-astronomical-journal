@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <ProximaPlanets />
+    <ProximaPlanets :single="single" :planet="planet" />
   </div>
 </template>
 
@@ -10,6 +10,10 @@ export default {
   name: "ProximaCentauri",
   components: {
     ProximaPlanets,
+  },
+  props: {
+    single: Boolean,
+    planet: String,
   },
 };
 </script>

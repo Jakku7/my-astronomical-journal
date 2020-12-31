@@ -21,7 +21,14 @@
         <option value="Tau Ceti g">Tau Ceti g</option>
         <option value="Tau Ceti h">Tau Ceti h</option>
       </select>
-      <!-- <input type="checkbox" id="checkbox" v-model="checked" /> -->
+      <input
+        class="checkbox"
+        type="checkbox"
+        id="checkbox"
+        v-model="checked"
+        @change="onChangeSingle"
+      />
+      <label for="checkbox" class="checkbox-label">Show this planet</label>
     </div>
     <div class="info-wrapper">
       <p class="planets-data-title">{{ planet }}:</p>
@@ -43,8 +50,10 @@ import { planets } from "../data/planets.js";
 export default {
   name: "Data",
   props: {
+    single: Boolean,
     system: String,
     planet: String,
+    onChangeSingle: Function,
     onChangePlanet: Function,
   },
   data() {
@@ -75,6 +84,14 @@ export default {
   box-sizing: border-box;
   width: 100%;
   justify-content: space-between;
+}
+.checkbox {
+  position: relative;
+  top: 2px;
+}
+.checkbox-label {
+  color: #fff;
+  font-size: 8px;
 }
 .data-wrapper {
   bottom: 0;
