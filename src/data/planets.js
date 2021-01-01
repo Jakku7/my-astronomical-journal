@@ -90,4 +90,18 @@ export const planets = [
     size: "1.8 Earth",
     orbit: "50 days",
   },
+  {
+    system: "Gliese-832",
+    name: "Gliese-832 b",
+    type: "Gas Giant",
+    size: "1.25 Jupiter",
+    orbit: "120 months",
+  },
+  {
+    system: "Gliese-832",
+    name: "Gliese-832 c",
+    type: "Neptune-like",
+    size: "2.18 Earth",
+    orbit: "36 days",
+  },
 ];

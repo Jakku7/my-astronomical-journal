@@ -21,6 +21,10 @@
         <option value="Tau Ceti g">Tau Ceti g</option>
         <option value="Tau Ceti h">Tau Ceti h</option>
       </select>
+      <select v-if="system === 'Gliese-832'" @change="onChangePlanet">
+        <option value="Gliese-832 b">Gliese-832 b</option>
+        <option value="Gliese-832 c">Gliese-832 c</option>
+      </select>
       <input
         class="checkbox"
         type="checkbox"

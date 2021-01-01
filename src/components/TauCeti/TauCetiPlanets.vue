@@ -1,5 +1,10 @@
 <template>
   <h6 v-if="single" class="planet-title">{{ planet }}</h6>
+  <h6 v-if="!single" class="system-title">
+    Tau Ceti <br /><span class="system-distance"
+      >12 light-years from earth</span
+    >
+  </h6>
   <div class="solar-system">
     <img src="../../assets/planets/sun.svg" alt="Sun" title="sun" class="sun" />
     <div
@@ -93,6 +98,17 @@ export default {
   font-size: 30px;
   opacity: 0.1;
   font-family: "Astrolab";
+}
+.system-title {
+  top: 100px;
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  opacity: 0.1;
+  font-family: "Astrolab";
+}
+.system-distance {
+  font-size: 18px;
 }
 .tau-ceti-e-orbit {
   border-radius: 50%;

@@ -15,6 +15,11 @@
     :single="single"
     v-if="this.system === 'Tau Ceti'"
   />
+  <Gliese832
+    :planet="planet"
+    :single="single"
+    v-if="this.system === 'Gliese-832'"
+  />
   <Data
     :single="single"
     :system="system"
@@ -30,12 +35,14 @@ import Navbar from "./components/Navbar.vue";
 import Data from "./components/Data.vue";
 import ProximaCentauri from "./components/ProximaCentauri/ProximaCentauriSystem.vue";
 import TauCeti from "./components/TauCeti/TauCetiSystem.vue";
+import Gliese832 from "./components/Gliese832/Gliese832System.vue";
 export default {
   name: "App",
   components: {
     SolarSystem,
     ProximaCentauri,
     TauCeti,
+    Gliese832,
     Navbar,
     Data,
   },
@@ -72,6 +79,10 @@ export default {
         case "2":
           this.system = "Tau Ceti";
           this.planet = "Tau Ceti e";
+          break;
+        case "3":
+          this.system = "Gliese-832";
+          this.planet = "Gliese-832 b";
           break;
         default:
           this.system = "Solar System";

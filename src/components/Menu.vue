@@ -1,11 +1,11 @@
 <template>
   <div class="menu-wrapper">
     <div class="menu">System:</div>
-    <p class="system">{{ system }}</p>
     <select class="select" @change="onChangeSystem">
       <option :value="0">Solar System</option>
       <option :value="1">Proxima Centauri</option>
       <option :value="2">Tau Ceti</option>
+      <option :value="3">Gliese 832</option>
     </select>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
   font-family: "Astrolab";
   color: #fff;
   text-align: right;
+  margin-bottom: 12px;
 }
 
 .system {
