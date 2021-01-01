@@ -2,28 +2,15 @@
   <div class="container">
     <div class="data-wrapper">
       <p class="planets-title">Planets:</p>
-      <select v-if="system === 'Solar System'" @change="onChangePlanet">
-        <option value="Mercury">Mercury</option>
-        <option value="Venus">Venus</option>
-        <option value="Earth">Earth</option>
-        <option value="Mars">Mars</option>
-        <option value="Jupiter">Jupiter</option>
-        <option value="Saturn">Saturn</option>
-        <option value="Uranus">Uranus</option>
-        <option value="Neptune">Neptune</option>
-      </select>
-      <select v-if="system === 'Proxima Centauri'" @change="onChangePlanet">
-        <option value="Proxima Centauri b">Proxima Centauri b</option>
-      </select>
-      <select v-if="system === 'Tau Ceti'" @change="onChangePlanet">
-        <option value="Tau Ceti e">Tau Ceti e</option>
-        <option value="Tau Ceti f">Tau Ceti f</option>
-        <option value="Tau Ceti g">Tau Ceti g</option>
-        <option value="Tau Ceti h">Tau Ceti h</option>
-      </select>
-      <select v-if="system === 'Gliese-832'" @change="onChangePlanet">
-        <option value="Gliese-832 b">Gliese-832 b</option>
-        <option value="Gliese-832 c">Gliese-832 c</option>
+      <select @change="onChangePlanet">
+        <option
+          v-for="elements in systemPlanets"
+          v-bind:value="elements.name"
+          v-bind:key="elements.name"
+          v-bind:selected="elements.name === planet && 'selected'"
+        >
+          {{ elements.name }}
+        </option>
       </select>
       <input
         class="checkbox"
@@ -42,7 +29,7 @@
         v-bind:key="element"
       >
         <p class="subtitle">Type: {{ element.type || "Unknown" }}</p>
-        <p class="subtitle">Size: {{ element.size }}</p>
+        <p class="subtitle">Size: {{ element.size || "Unknown" }}</p>
         <p class="subtitle">Orbit: {{ element.orbit || "Unknown" }}</p>
       </div>
     </div>
@@ -69,6 +56,11 @@ export default {
     filteredPlanets() {
       return this.planets.filter((element) => {
         return element.name === this.planet;
+      });
+    },
+    systemPlanets() {
+      return this.planets.filter((element) => {
+        return element.system === this.system;
       });
     },
   },

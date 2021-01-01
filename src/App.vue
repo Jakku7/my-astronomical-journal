@@ -6,6 +6,7 @@
     v-if="this.system === 'Solar System'"
   />
   <ProximaCentauri
+    :system="system"
     :planet="planet"
     :single="single"
     v-if="this.system === 'Proxima Centauri'"

@@ -13,15 +13,34 @@
       class="sun"
     />
     <div
-      v-if="!single || (single && planet === 'Proxima Centauri b')"
-      class="orbit mercury-orbit"
+      v-for="planet in systemPlanets"
+      v-bind:key="planet.name"
+      class="orbit"
+      :style="{
+        width: planet.width + 'px',
+        height: planet.width + 'px',
+        animationDuration: planet.animationTime + 's',
+      }"
     >
-      <div class="planet-hover mercury planet">
+      <div
+        class="planet"
+        :style="{
+          width: planet.sizeInPixels[0] + 'px',
+          height: planet.sizeInPixels[1] + 'px',
+          left: 'calc(50% +' + planet.width / 2 + 'px)',
+        }"
+      >
         <img
-          src="../../assets/planets/mercury.svg"
-          alt="Proxima Centauri b"
-          title="Proxima Centauri b"
-          class="mercury mercury-picture"
+          :src="require(`../../assets/planets/${planet.picture}`)"
+          v-bind:alt="planet.name"
+          v-bind:title="planet.name"
+          class="planet-picture"
+          :style="{
+            width: planet.sizeInPixels[0] + 'px',
+            height: planet.sizeInPixels[1] + 'px',
+            left: 'calc(50% +' + planet.width / 2 + 'px)',
+            animationDuration: planet.animationTime / 2 + 's',
+          }"
         />
       </div>
     </div>
@@ -29,11 +48,23 @@
 </template>
 
 <script>
+import { planets } from "../../data/planets.js";
 export default {
   name: "ProximaPlanets",
   props: {
     single: Boolean,
     planet: String,
+    system: String,
+  },
+  computed: {
+    systemPlanets() {
+      return planets.filter((element) => {
+        if (!this.single) {
+          return element.system === this.system;
+        }
+        return element.name === this.planet;
+      });
+    },
   },
 };
 </script>
@@ -51,11 +82,16 @@ export default {
 .orbit {
   border: 0.25rem solid rgba(190, 190, 190, 0.075);
   display: block;
-  left: 50%;
   position: absolute;
   top: 50%;
+  left: 50%;
   transform: translate3d(-50%, -50%, 0);
   transition: border 0.2s ease-in-out;
+  transform-style: preserve-3d;
+  border-radius: 50%;
+  animation-name: orbit;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 .planet-title {
   top: 100px;
@@ -76,19 +112,13 @@ export default {
 .system-distance {
   font-size: 18px;
 }
-.mercury-orbit {
-  border-radius: 50%;
-  width: 80px;
-  height: 80px;
-  animation: orbit 0.3s linear infinite;
-  transform-style: preserve-3d;
-}
 .planet {
   position: absolute;
-  left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
   transition: 0.3s ease-in-out;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%) rotateX(90deg) rotateY(90deg) rotateZ(0);
+  display: flex;
 }
 .sun {
   position: absolute;
@@ -99,16 +129,13 @@ export default {
   transform: translate(-50%, -50%) rotateX(-75deg) rotateY(0) rotateZ(0);
   transform-style: preserve-3d;
 }
-.mercury {
-  width: 17px;
-  height: 17px;
-  left: calc(50% + 40px);
+.planet-picture {
+  animation-name: rotation3d;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
   transform-style: preserve-3d;
   transform: translate(-50%, -50%) rotateX(90deg) rotateY(90deg) rotateZ(0);
   display: flex;
-}
-.mercury-picture {
-  animation: rotation3d 0.15s linear infinite;
 }
 @keyframes orbit {
   0% {
