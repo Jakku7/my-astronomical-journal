@@ -96,8 +96,11 @@ export default {
 
 <style>
 @font-face {
-  font-family: "Astrolab";
-  src: url("/assets/fonts/Astrolab.ttf") format("ttf");
+  font-family: "astrolabregular";
+  src: url("/assets/fonts/astrolab-webfont.woff2") format("woff2"),
+    url("/assets/fonts/astrolab-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 body {
   padding: 0;
