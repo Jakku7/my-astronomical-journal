@@ -11,6 +11,12 @@
     :single="single"
     v-if="this.system === 'Proxima Centauri'"
   />
+  <Trappist1
+    :system="system"
+    :planet="planet"
+    :single="single"
+    v-if="this.system === 'Trappist-1'"
+  />
   <TauCeti
     :planet="planet"
     :single="single"
@@ -35,12 +41,14 @@ import SolarSystem from "./components/SolarSystem/SolarSystem.vue";
 import Navbar from "./components/Navbar.vue";
 import Data from "./components/Data.vue";
 import ProximaCentauri from "./components/ProximaCentauri/ProximaCentauriSystem.vue";
+import Trappist1 from "./components/Trappist1/Trappist1System.vue";
 import TauCeti from "./components/TauCeti/TauCetiSystem.vue";
 import Gliese832 from "./components/Gliese832/Gliese832System.vue";
 export default {
   name: "App",
   components: {
     SolarSystem,
+    Trappist1,
     ProximaCentauri,
     TauCeti,
     Gliese832,
@@ -84,6 +92,10 @@ export default {
         case "3":
           this.system = "Gliese-832";
           this.planet = "Gliese-832 b";
+          break;
+        case "4":
+          this.system = "Trappist-1";
+          this.planet = "Trappist-1 b";
           break;
         default:
           this.system = "Solar System";
