@@ -1,33 +1,6 @@
 <template>
   <Navbar :system="system" :onChangeSystem="onChangeSystem" />
-  <Planets :planet="planet" :single="single" :system="system" />
-  <!-- <SolarSystem
-    :planet="planet"
-    :single="single"
-    v-if="this.system === 'Solar System'"
-  />
-  <ProximaCentauri
-    :system="system"
-    :planet="planet"
-    :single="single"
-    v-if="this.system === 'Proxima Centauri'"
-  />
-  <Trappist1
-    :system="system"
-    :planet="planet"
-    :single="single"
-    v-if="this.system === 'Trappist-1'"
-  />
-  <TauCeti
-    :planet="planet"
-    :single="single"
-    v-if="this.system === 'Tau Ceti'"
-  />
-  <Gliese832
-    :planet="planet"
-    :single="single"
-    v-if="this.system === 'Gliese-832'"
-  /> -->
+  <System :planet="planet" :single="single" :system="system" />
   <Data
     :single="single"
     :system="system"
@@ -39,22 +12,13 @@
 
 <script>
 // import SolarSystem from "./components/SolarSystem/SolarSystem.vue";
-import Planets from "./components/Planets.vue";
+import System from "./components/System.vue";
 import Navbar from "./components/Navbar.vue";
 import Data from "./components/Data.vue";
-// import ProximaCentauri from "./components/ProximaCentauri/ProximaCentauriSystem.vue";
-// import Trappist1 from "./components/Trappist1/Trappist1System.vue";
-// import TauCeti from "./components/TauCeti/TauCetiSystem.vue";
-// import Gliese832 from "./components/Gliese832/Gliese832System.vue";
 export default {
   name: "App",
   components: {
-    Planets,
-    // SolarSystem,
-    // Trappist1,
-    // ProximaCentauri,
-    // TauCeti,
-    // Gliese832,
+    System,
     Navbar,
     Data,
   },
