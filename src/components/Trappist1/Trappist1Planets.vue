@@ -1,16 +1,22 @@
 <template>
   <h6 v-if="single" class="planet-title">{{ planet }}</h6>
   <h6 v-if="!single" class="system-title">
-    Trappist 1 <br /><span class="system-distance"
-      >41 light-years from earth</span
+    {{ systemStars[0].name }}<br /><span class="system-distance">
+      {{ systemStars[0].description }}</span
     >
   </h6>
   <div class="solar-system">
     <img
-      src="../../assets/planets/proxima-centauri.svg"
-      alt="Proxima Centauri"
-      title="Proxima Centauri"
+      v-for="star in systemStars"
+      v-bind:key="star.name"
+      :src="require(`../../assets/planets/${star.picture}`)"
+      v-bind:alt="star.name"
+      v-bind:title="star.name"
       class="sun"
+      :style="{
+        width: star.sizeInPixels[0] + 'px',
+        height: star.sizeInPixels[1] + 'px',
+      }"
     />
     <div
       v-for="planet in systemPlanets"
@@ -58,11 +64,19 @@ export default {
   },
   computed: {
     systemPlanets() {
-      return planets.filter((element) => {
+      const filteredPlanets = planets.filter((element) => {
+        return element.type !== "star";
+      });
+      return filteredPlanets.filter((element) => {
         if (!this.single) {
           return element.system === this.system;
         }
         return element.name === this.planet;
+      });
+    },
+    systemStars() {
+      return planets.filter((element) => {
+        return element.type === "star";
       });
     },
   },
@@ -124,8 +138,6 @@ export default {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 35px;
-  height: 35px;
   transform: translate(-50%, -50%) rotateX(-75deg) rotateY(0) rotateZ(0);
   transform-style: preserve-3d;
 }

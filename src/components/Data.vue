@@ -60,7 +60,7 @@ export default {
     },
     systemPlanets() {
       return this.planets.filter((element) => {
-        return element.system === this.system;
+        return element.system === this.system && element.type !== "star";
       });
     },
   },
