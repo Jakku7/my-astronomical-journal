@@ -103,6 +103,7 @@ body {
   margin: 0 12px;
   background-image: url("./assets/planets/space-texture.png");
   background-size: 25% 25%;
+  text-align: center;
 }
 #app {
   -webkit-font-smoothing: antialiased;
