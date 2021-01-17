@@ -1,13 +1,18 @@
 <template>
   <div class="background">
-    <Planets :single="single" :system="system" :planet="planet" />
+    <Planets
+      :objects="objects"
+      :single="single"
+      :system="system"
+      :planet="planet"
+    />
   </div>
 </template>
 
 <script>
 import Planets from "./Planets";
 export default {
-  name: "Trappist-1",
+  name: "System",
   components: {
     Planets,
   },
@@ -15,6 +20,7 @@ export default {
     single: Boolean,
     planet: String,
     system: String,
+    objects: Array,
   },
 };
 </script>

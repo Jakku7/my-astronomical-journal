@@ -1,7 +1,13 @@
 <template>
   <Navbar :system="system" :onChangeSystem="onChangeSystem" />
-  <System :planet="planet" :single="single" :system="system" />
+  <System
+    v-bind:objects="objects"
+    :planet="planet"
+    :single="single"
+    :system="system"
+  />
   <Data
+    v-bind:objects="objects"
     :single="single"
     :system="system"
     :planet="planet"
@@ -15,6 +21,7 @@
 import System from "./components/System.vue";
 import Navbar from "./components/Navbar.vue";
 import Data from "./components/Data.vue";
+import axios from "axios";
 export default {
   name: "App",
   components: {
@@ -27,7 +34,13 @@ export default {
       single: false,
       system: "Solar System",
       planet: "Mercury",
+      objects: [],
     };
+  },
+  mounted() {
+    axios
+      .get("https://my-astronomical-journal-dash.herokuapp.com/objects")
+      .then((response) => (this.objects = response.data));
   },
   methods: {
     onChangePlanet(event) {

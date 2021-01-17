@@ -1,21 +1,23 @@
 <template>
   <h6 v-if="single" class="planet-title">{{ planet }}</h6>
   <h6 v-if="!single" class="system-title">
-    {{ systemStars[0].name }}<br /><span class="system-distance">
-      {{ systemStars[0].description }}</span
+    {{ systemStars[0]?.name }}<br /><span class="system-distance">
+      {{ systemStars[0]?.description }}</span
     >
   </h6>
   <div class="solar-system">
     <img
       v-for="star in systemStars"
       v-bind:key="star.name"
-      :src="require(`../assets/planets/${star.picture}`)"
+      :src="
+        `https://my-astronomical-journal-dash.herokuapp.com${star.picture[0].url}`
+      "
       v-bind:alt="star.name"
       v-bind:title="star.name"
       class="sun"
       :style="{
-        width: star.sizeInPixels[0] + 'px',
-        height: star.sizeInPixels[1] + 'px',
+        width: star.sizeWidth + 'px',
+        height: star.sizeHeight + 'px',
       }"
     />
     <div
@@ -31,19 +33,21 @@
       <div
         class="planet"
         :style="{
-          width: planet.sizeInPixels[0] + 'px',
-          height: planet.sizeInPixels[1] + 'px',
+          width: planet.sizeWidth + 'px',
+          height: planet.sizeHeight + 'px',
           left: 'calc(50% +' + planet.width / 2 + 'px)',
         }"
       >
         <img
-          :src="require(`../assets/planets/${planet.picture}`)"
+          :src="
+            `https://my-astronomical-journal-dash.herokuapp.com${planet.picture[0].url}`
+          "
           v-bind:alt="planet.name"
           v-bind:title="planet.name"
           class="planet-picture"
           :style="{
-            width: planet.sizeInPixels[0] + 'px',
-            height: planet.sizeInPixels[1] + 'px',
+            width: planet.sizeWidth + 'px',
+            height: planet.sizeHeight + 'px',
             left: 'calc(50% +' + planet.width / 2 + 'px)',
             animationDuration: planet.animationTime / 2 + 's',
           }"
@@ -54,33 +58,39 @@
 </template>
 
 <script>
-import { planets } from "../data/planets.js";
 export default {
   name: "Planets",
   props: {
     single: Boolean,
     planet: String,
     system: String,
+    objects: Array,
   },
   computed: {
     systemPlanets() {
-      const filteredPlanets = planets.filter((element) => {
-        return element.type !== "star";
-      });
-      return filteredPlanets.filter((element) => {
-        if (!this.single) {
-          return element.system === this.system;
-        }
-        return element.name === this.planet;
-      });
+      if (this.objects) {
+        const filteredPlanets = this.objects.filter((element) => {
+          return element.type !== "star";
+        });
+        return filteredPlanets.filter((element) => {
+          if (!this.single) {
+            return element.system === this.system;
+          }
+          return element.name === this.planet;
+        });
+      }
+      return [];
     },
     systemStars() {
-      const filteredStars = planets.filter((element) => {
-        return element.type === "star";
-      });
-      return filteredStars.filter((element) => {
-        return element.system === this.system;
-      });
+      if (this.objects) {
+        const filteredStars = this.objects.filter((element) => {
+          return element.type === "star";
+        });
+        return filteredStars.filter((element) => {
+          return element.system === this.system;
+        });
+      }
+      return [];
     },
   },
 };

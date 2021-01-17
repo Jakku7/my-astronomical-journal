@@ -46,6 +46,7 @@ export default {
     planet: String,
     onChangeSingle: Function,
     onChangePlanet: Function,
+    objects: Array,
   },
   data() {
     return {
