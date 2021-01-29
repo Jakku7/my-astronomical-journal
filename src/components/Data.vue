@@ -37,7 +37,6 @@
 </template>
 
 <script>
-import { planets } from "../data/planets.js";
 export default {
   name: "Data",
   props: {
@@ -48,19 +47,14 @@ export default {
     onChangePlanet: Function,
     objects: Array,
   },
-  data() {
-    return {
-      planets: planets,
-    };
-  },
   computed: {
     filteredPlanets() {
-      return this.planets.filter((element) => {
+      return this.objects.filter((element) => {
         return element.name === this.planet;
       });
     },
     systemPlanets() {
-      return this.planets.filter((element) => {
+      return this.objects.filter((element) => {
         return element.system === this.system && element.type !== "star";
       });
     },

@@ -1,7 +1,11 @@
 <template>
   <div class="navbar">
     <Logotype />
-    <Menu :system="system" :onChangeSystem="onChangeSystem" />
+    <Menu
+      :objects="objects"
+      :system="system"
+      :onChangeSystem="onChangeSystem"
+    />
   </div>
 </template>
 
@@ -17,6 +21,7 @@ export default {
   props: {
     system: String,
     onChangeSystem: Function,
+    objects: Array,
   },
 };
 </script>

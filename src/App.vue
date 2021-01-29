@@ -1,5 +1,9 @@
 <template>
-  <Navbar :system="system" :onChangeSystem="onChangeSystem" />
+  <Navbar
+    v-bind:objects="objects"
+    :system="system"
+    :onChangeSystem="onChangeSystem"
+  />
   <System
     v-bind:objects="objects"
     :planet="planet"
@@ -57,23 +61,23 @@ export default {
     },
     setSystem(newSystem) {
       switch (newSystem) {
-        case "0":
+        case "Solar System":
           this.system = "Solar System";
           this.planet = "Mercury";
           break;
-        case "1":
+        case "Proxima Centauri":
           this.system = "Proxima Centauri";
           this.planet = "Proxima Centauri b";
           break;
-        case "2":
+        case "Tau Ceti":
           this.system = "Tau Ceti";
           this.planet = "Tau Ceti e";
           break;
-        case "3":
+        case "Gliese-832":
           this.system = "Gliese-832";
           this.planet = "Gliese-832 b";
           break;
-        case "4":
+        case "Trappist-1":
           this.system = "Trappist-1";
           this.planet = "Trappist-1 b";
           break;

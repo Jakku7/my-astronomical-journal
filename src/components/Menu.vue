@@ -2,11 +2,20 @@
   <div class="menu-wrapper">
     <div class="menu">System:</div>
     <select class="select" @change="onChangeSystem">
-      <option :value="0">Solar System</option>
+      <option
+        v-for="elements in solarSystems"
+        v-bind:value="elements.name"
+        v-bind:key="elements.name"
+        v-bind:selected="elements.name === system && 'selected'"
+      >
+        {{ elements.name }}
+      </option>
+
+      <!-- <option :value="0">Solar System</option>
       <option :value="1">Proxima Centauri</option>
       <option :value="2">Tau Ceti</option>
       <option :value="3">Gliese 832</option>
-      <option :value="4">Trappist 1</option>
+      <option :value="4">Trappist 1</option> -->
     </select>
   </div>
 </template>
@@ -17,6 +26,14 @@ export default {
   props: {
     system: String,
     onChangeSystem: Function,
+    objects: Array,
+  },
+  computed: {
+    solarSystems() {
+      return this.objects.filter((element) => {
+        return element.type === "star";
+      });
+    },
   },
 };
 </script>
