@@ -1,0 +1,31 @@
+# compiled output
+/dist
+/coverage
+apps/service/src/gen/*
+!apps/service/src/gen/.gitkeep
+apps/service/tsoa.json
+sitemap.xml
+sitemap_*.xml
+
+# Cached files
+.eslintcache
+
+# dependencies
+node_modules
+
+# environment
+*.env
+.npmrc
+
+# infra
+.terraform
+*.cer
+*.key
+
+# logs
+*.log
+
+# System Files
+.DS_Store
+Thumbs.db
+.eslintcache

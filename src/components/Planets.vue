@@ -9,11 +9,9 @@
     <img
       v-for="star in systemStars"
       v-bind:key="star.name"
-      :src="
-        `https://my-astronomical-journal-dash.herokuapp.com${star.picture[0].url}`
-      "
       v-bind:alt="star.name"
       v-bind:title="star.name"
+      v-bind:src="pictures(star.color)"
       class="sun"
       :style="{
         width: star.sizeWidth + 'px',
@@ -39,9 +37,7 @@
         }"
       >
         <img
-          :src="
-            `https://my-astronomical-journal-dash.herokuapp.com${planet.picture[0].url}`
-          "
+          v-bind:src="pictures(planer.color)"
           v-bind:alt="planet.name"
           v-bind:title="planet.name"
           class="planet-picture"
@@ -60,6 +56,34 @@
 <script>
 export default {
   name: "Planets",
+  methods: {
+    pictures(color) {
+      switch (color) {
+        case "yellow":
+          return require("../assets/planets/sun.svg");
+        case "blue":
+          return require("../assets/planets/earth.svg");
+        case "orange":
+          return require("../assets/planets/jupiter.svg");
+        case "red":
+          return require("../assets/planets/mars.svg");
+        case "neptune":
+          return require("../assets/planets/neptune.svg");
+        case "green":
+          return require("../assets/planets/uranus.svg");
+        case "light-orange":
+          return require("../assets/planets/venus.svg");
+        case "medium-orange":
+          return require("../assets/planets/saturn.svg");
+        case "brown":
+          return require("../assets/planets/pluto.svg");
+        case "dark-red":
+          return require("../assets/planets/proxima-centauri.svg");
+        default:
+          return require("../assets/planets/mars.svg");
+      }
+    },
+  },
   props: {
     single: Boolean,
     planet: String,
