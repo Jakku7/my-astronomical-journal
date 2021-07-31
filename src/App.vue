@@ -5,11 +5,21 @@
     :onChangeSystem="onChangeSystem"
   />
   <System
+    v-if="objects?.length"
     v-bind:objects="objects"
     :planet="planet"
     :single="single"
     :system="system"
   />
+  <div v-if="!objects?.length" class="lottie">
+    <p class="loading">Loading...</p>
+    <Lottie
+      :options="defaultOptions"
+      :height="300"
+      :width="300"
+      v-on:animCreated="handleAnimation"
+    />
+  </div>
   <Data
     v-bind:objects="objects"
     :single="single"
@@ -25,6 +35,8 @@
 import System from "./components/System.vue";
 import Navbar from "./components/Navbar.vue";
 import Data from "./components/Data.vue";
+import Lottie from "vue-lottie";
+import * as animationData from "@/assets/lottie/rocket-2.json";
 import axios from "axios";
 export default {
   name: "App",
@@ -32,13 +44,20 @@ export default {
     System,
     Navbar,
     Data,
+    Lottie,
   },
   data() {
     return {
+      defaultOptions: {
+        animationData: animationData?.default,
+        loop: true,
+        autoplay: true,
+      },
       single: false,
       system: "Solar System",
       planet: "Mercury",
       objects: [],
+      animationSpeed: 1,
     };
   },
   mounted() {
@@ -86,6 +105,21 @@ export default {
           this.planet = "Mercury";
       }
     },
+    handleAnimation: function(anim) {
+      this.anim = anim;
+    },
+    stop: function() {
+      this.anim.stop();
+    },
+    play: function() {
+      this.anim.play();
+    },
+    pause: function() {
+      this.anim.pause();
+    },
+    onSpeedChange: function() {
+      this.anim.setSpeed(this.animationSpeed);
+    },
   },
 };
 </script>
@@ -120,5 +154,18 @@ body {
   min-width: 600px;
   display: flex;
   justify-content: center;
+}
+.lottie {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+.loading {
+  color: white;
+  font-family: "Astrolab";
+  font-size: 12px;
+  margin-bottom: -12px;
 }
 </style>
