@@ -11,7 +11,7 @@
       v-bind:key="star.name"
       v-bind:alt="star.name"
       v-bind:title="star.name"
-      v-bind:src="pictures(star.color)"
+      v-bind:src="pictures(star?.color)"
       class="sun"
       :style="{
         width: star.sizeWidth + 'px',
@@ -37,7 +37,7 @@
         }"
       >
         <img
-          v-bind:src="pictures(planer.color)"
+          v-bind:src="pictures(planet?.color)"
           v-bind:alt="planet.name"
           v-bind:title="planet.name"
           class="planet-picture"
