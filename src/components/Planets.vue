@@ -161,7 +161,9 @@ export default {
   font-family: "Astrolab";
 }
 .system-distance {
+  display: block;
   font-size: 18px;
+  max-width: 900px;
 }
 .planet {
   position: absolute;

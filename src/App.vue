@@ -80,31 +80,7 @@ export default {
       this.single = !this.single;
     },
     setSystem(newSystem) {
-      switch (newSystem) {
-        case "Solar System":
-          this.system = "Solar System";
-          this.planet = "Mercury";
-          break;
-        case "Proxima Centauri":
-          this.system = "Proxima Centauri";
-          this.planet = "Proxima Centauri b";
-          break;
-        case "Tau Ceti":
-          this.system = "Tau Ceti";
-          this.planet = "Tau Ceti e";
-          break;
-        case "Gliese-832":
-          this.system = "Gliese-832";
-          this.planet = "Gliese-832 b";
-          break;
-        case "Trappist-1":
-          this.system = "Trappist-1";
-          this.planet = "Trappist-1 b";
-          break;
-        default:
-          this.system = "Solar System";
-          this.planet = "Mercury";
-      }
+      this.system = newSystem;
     },
     handleAnimation: function(anim) {
       this.anim = anim;
