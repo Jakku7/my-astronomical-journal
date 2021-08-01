@@ -174,6 +174,7 @@ body {
   position: absolute;
   transition: 0.5s ease-in-out;
   width: 100%;
+  z-index: -1;
 }
 .system {
   transition: 1s ease-in-out;
