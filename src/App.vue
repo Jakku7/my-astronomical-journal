@@ -5,13 +5,14 @@
     :onChangeSystem="onChangeSystem"
   />
   <System
-    v-if="objects?.length"
     v-bind:objects="objects"
+    class="system"
+    v-bind:class="{ active: !objects?.length }"
     :planet="planet"
     :single="single"
     :system="system"
   />
-  <div v-if="!objects?.length" class="lottie">
+  <div class="lottie" v-bind:class="{ active: objects?.length }">
     <p class="loading">Loading...</p>
     <Lottie
       :options="defaultOptions"
@@ -155,17 +156,26 @@ body {
   display: flex;
   justify-content: center;
 }
-.lottie {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
+.active {
+  opacity: 0;
 }
 .loading {
   color: white;
   font-family: "Astrolab";
   font-size: 12px;
   margin-bottom: -12px;
+}
+.lottie {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  transition: 0.5s ease-in-out;
+  width: 100%;
+}
+.system {
+  transition: 1s ease-in-out;
 }
 </style>
