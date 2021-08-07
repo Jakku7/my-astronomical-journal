@@ -66,12 +66,24 @@ export default {
       .get("https://my-astronomical-journal-dash.herokuapp.com/objects")
       .then((response) => (this.objects = response.data));
   },
+  computed: {
+    lastPlanetInSystem: function () {
+      const systemPlanets = this.objects?.filter((element) => {
+        return (
+          element.system === this.system &&
+          element?.type?.toLowerCase() !== "star"
+        );
+      });
+      return systemPlanets?.[systemPlanets?.length - 1]?.name;
+    },
+  },
   methods: {
     onChangePlanet(event) {
       this.setPlanet(event.srcElement.value);
     },
     onChangeSystem(event) {
       this.setSystem(event.srcElement.value);
+      this.setPlanet(this.lastPlanetInSystem);
     },
     setPlanet(newPlanet) {
       this.planet = newPlanet;
@@ -82,20 +94,8 @@ export default {
     setSystem(newSystem) {
       this.system = newSystem;
     },
-    handleAnimation: function(anim) {
+    handleAnimation: function (anim) {
       this.anim = anim;
-    },
-    stop: function() {
-      this.anim.stop();
-    },
-    play: function() {
-      this.anim.play();
-    },
-    pause: function() {
-      this.anim.pause();
-    },
-    onSpeedChange: function() {
-      this.anim.setSpeed(this.animationSpeed);
     },
   },
 };
