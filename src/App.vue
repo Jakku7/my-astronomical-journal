@@ -67,14 +67,14 @@ export default {
       .then((response) => (this.objects = response.data));
   },
   computed: {
-    lastPlanetInSystem: function () {
+    firstPlanetInTheSystem: function () {
       const systemPlanets = this.objects?.filter((element) => {
         return (
           element.system === this.system &&
           element?.type?.toLowerCase() !== "star"
         );
       });
-      return systemPlanets?.[systemPlanets?.length - 1]?.name;
+      return systemPlanets?.[0]?.name;
     },
   },
   methods: {
@@ -83,7 +83,7 @@ export default {
     },
     onChangeSystem(event) {
       this.setSystem(event.srcElement.value);
-      this.setPlanet(this.lastPlanetInSystem);
+      this.setPlanet(this.firstPlanetInTheSystem);
     },
     setPlanet(newPlanet) {
       this.planet = newPlanet;
