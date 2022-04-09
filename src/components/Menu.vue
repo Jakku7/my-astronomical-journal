@@ -10,12 +10,6 @@
       >
         {{ elements.name }}
       </option>
-
-      <!-- <option :value="0">Solar System</option>
-      <option :value="1">Proxima Centauri</option>
-      <option :value="2">Tau Ceti</option>
-      <option :value="3">Gliese 832</option>
-      <option :value="4">Trappist 1</option> -->
     </select>
   </div>
 </template>
