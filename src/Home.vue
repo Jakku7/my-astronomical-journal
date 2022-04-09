@@ -72,7 +72,7 @@ export default {
     onChangeSystem(event) {
       this.setSystem(event.srcElement.value);
       const systemPlanets = this.objects?.filter((element) => {
-        return element.system === event.srcElement.value
+        return element.system === event.srcElement.value && element.type !== 'star'
       })
       if (systemPlanets) {
          this.setPlanet(systemPlanets[0].name);
