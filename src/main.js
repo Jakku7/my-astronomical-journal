@@ -1,8 +1,9 @@
-import { createWebHistory, createRouter } from "vue-router";
-import { createApp } from 'vue'
-import Home from './Home.vue'
-import Diary from './Diary.vue'
-import App from './App.vue'
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import App from "./App.vue";
+import Diary from "./Diary.vue";
+import Home from "./Home.vue";
+import MilkyWay from "./MilkyWay.vue";
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     name: "Diary",
     component: Diary,
   },
+  {
+    path: "/milkyway",
+    name: "MilkyWay",
+    component: MilkyWay,
+  },
 ];
 
 const router = createRouter({
@@ -22,4 +28,6 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount('#app')
+createApp(App)
+  .use(router)
+  .mount("#app");

@@ -1,6 +1,9 @@
 <template>
   <div class="logotype">
-    <router-link class="link" to="/">My Astronomical <span class="second-line">Journal</span></router-link>
+    <router-link class="link" to="/"
+      >My Astronomical <span class="second-line">Journal</span></router-link
+    >
+    <router-link class="link" to="/milkyway">Milky Way</router-link>
     <router-link class="link" to="/diary">Diary</router-link>
   </div>
 </template>

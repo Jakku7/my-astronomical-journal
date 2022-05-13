@@ -1,21 +1,38 @@
 <template>
-    <div class="diary">
-        <Lottie
+  <div class="diary">
+    <h1>Diary feed (beta)</h1>
+    <div class="lottie" v-bind:class="{ active: posts?.length }">
+      <Lottie
         :options="defaultOptions"
         :height="300"
         :width="300"
         v-on:animCreated="handleAnimation"
-        />
-         <h2 class="loading">Soon!</h2>
+      />
+      <h2 class="loading">Loading...</h2>
     </div>
+    <div class="cards" v-bind:class="{ active: !posts?.length }">
+      <Card
+        v-for="post in posts?.reverse()"
+        v-bind:key="post.title"
+        v-bind:title="post.title"
+        v-bind:author="post.author"
+        v-bind:content="post.content"
+        v-bind:date="post.date"
+        v-bind:picture="post.picture"
+      />
+    </div>
+  </div>
 </template>
 
 <script>
 import Lottie from "vue-lottie";
+import Card from "./components/diary/Card";
+import axios from "axios";
 import * as animationData from "@/assets/lottie/space.json";
 export default {
   name: "Diary",
   components: {
+    Card,
     Lottie,
   },
   data() {
@@ -26,7 +43,13 @@ export default {
         autoplay: true,
       },
       animationSpeed: 1,
+      posts: [],
     };
+  },
+  mounted() {
+    axios
+      .get("https://my-astronomical-journal-dash.herokuapp.com/posts")
+      .then((response) => (this.posts = response.data));
   },
   methods: {
     handleAnimation: function(anim) {
@@ -49,19 +72,36 @@ export default {
 </script>
 
 <style>
+h1 {
+  color: white;
+  font-family: "Astrolab";
+  margin-bottom: 36px;
+}
+.active {
+  opacity: 0;
+}
+.cards {
+  display: flex;
+  transition: 1s ease-in-out;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
 .diary {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    align-content: center;
-    flex-direction: column;
-    position: relative;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  align-content: center;
+  flex-direction: column;
+  position: relative;
 }
 .loading {
-    margin: 0 auto;
-    font-size: 30px;
+  margin: 0 auto;
+  font-size: 30px;
 }
 .lottie {
   align-items: center;

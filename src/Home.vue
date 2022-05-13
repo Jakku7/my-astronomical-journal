@@ -72,10 +72,12 @@ export default {
     onChangeSystem(event) {
       this.setSystem(event.srcElement.value);
       const systemPlanets = this.objects?.filter((element) => {
-        return element.system === event.srcElement.value && element.type !== 'star'
-      })
+        return (
+          element.system === event.srcElement.value && element.type !== "star"
+        );
+      });
       if (systemPlanets) {
-         this.setPlanet(systemPlanets[0].name);
+        this.setPlanet(systemPlanets[0].name);
       }
     },
     setPlanet(newPlanet) {
@@ -109,8 +111,16 @@ export default {
 <style>
 @font-face {
   font-family: "Astrolab";
-  src: url(~@/assets/fonts/astrolab-webfont.eot) format('eot');
-  src: url(~@/assets/fonts/astrolab-webfont.woff2) format('woff2'), url(~@/assets/fonts/astrolab-webfont.woff) format('woff');
+  src: url(~@/assets/fonts/astrolab-webfont.eot) format("eot");
+  src: url(~@/assets/fonts/astrolab-webfont.woff2) format("woff2"),
+    url(~@/assets/fonts/astrolab-webfont.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Liberation";
+  src: url(~@/assets/fonts/liberation-regular.woff) format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -133,7 +143,6 @@ body {
   width: 100%;
   position: relative;
   margin: 12px auto;
-  min-width: 900px;
   display: flex;
   justify-content: center;
 }
