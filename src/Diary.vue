@@ -71,11 +71,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h1 {
   color: white;
   font-family: "Astrolab";
-  margin-bottom: 24px;
+  margin-bottom: 36px;
 }
 .active {
   opacity: 0;
@@ -108,7 +108,7 @@ h1 {
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   transition: 0.5s ease-in-out;
   width: 100%;
   z-index: -1;
