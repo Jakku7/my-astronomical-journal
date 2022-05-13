@@ -12,7 +12,7 @@
     </div>
     <div class="cards" v-bind:class="{ active: !posts?.length }">
       <Card
-        v-for="post in posts?.reverse()"
+        v-for="post in posts"
         v-bind:key="post.title"
         v-bind:title="post.title"
         v-bind:author="post.author"
@@ -75,7 +75,7 @@ export default {
 h1 {
   color: white;
   font-family: "Astrolab";
-  margin-bottom: 36px;
+  margin-bottom: 24px;
 }
 .active {
   opacity: 0;
