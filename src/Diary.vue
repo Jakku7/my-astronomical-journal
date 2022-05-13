@@ -93,7 +93,6 @@ h1 {
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  height: 100%;
   align-items: center;
   align-content: center;
   flex-direction: column;
