@@ -1,8 +1,8 @@
 <template>
   <div class="card-area">
     <div class="bar">
-      <span>{{ date }} </span>
-      <span>Author: {{ author }}</span>
+      <span>{{ reformatDate(date) }} </span>
+      <span>Source: {{ author }}</span>
     </div>
     <div class="card">
       <div
@@ -26,6 +26,15 @@ export default {
     date: String,
     title: String,
     picture: String,
+  },
+  methods: {
+    reformatDate(date) {
+      if (date) {
+        const newDate = new Date(date);
+        return newDate.toLocaleDateString('en')
+      }
+      return 'unknown';
+    },
   },
 };
 </script>

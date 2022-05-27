@@ -12,7 +12,7 @@
     </div>
     <div class="cards" v-bind:class="{ active: !posts?.length }">
       <Card
-        v-for="post in posts"
+        v-for="post in sortPosts(posts)"
         v-bind:key="post.title"
         v-bind:title="post.title"
         v-bind:author="post.author"
@@ -52,6 +52,13 @@ export default {
       .then((response) => (this.posts = response.data));
   },
   methods: {
+    sortPosts: function(posts) {
+      if (posts) {
+        return posts.sort(function(a, b) {
+            return new Date(b.created_at) - new Date(a.created_at);
+        })
+      }
+    },
     handleAnimation: function(anim) {
       this.anim = anim;
     },
